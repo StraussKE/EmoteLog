@@ -1,8 +1,63 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿<!--
+    Created by Katie Strauss
+
+    Final Project for CS 295N ASP.Net
+    Lane Community College
+    Fall 2019
+
+    Assignment requirements set by Brian Bird
+    Assignment concept and implementation by Katie Strauss
+-->
+@{
+    ViewData["Title"] = "Welcome to Emotion Log";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="jumbotron">
+    <h1>Emotion Log</h1>
+    <p class="lead">
+        Have you ever struggled to care enough to get out of bed in the morning?  Have you gone through your days in a mental
+        fugue, lost to the world without desire to come back?  Can you remember how long it’s been since you’ve been happy?
+        For many, these questions are real and relevant somewhat regularly, yet the world is so colored by the experience that
+        they feel that the way they feel at any given moment is they way they’ve always felt.  Trapped within their own heads,
+        there is a sense of powerlessness to change things on the bad days and denial that things need changed on the good days.
+        Time loses all meaning.
+    </p>
+    <p>
+        This is where Emotion Log comes in.  It is a starter step, a way to see the ebb and flow of your own emotional state.
+        Just log in once a day (or more!) and answer a few questions about how your day is going and we’ll help you track how
+        you’re doing.  (Initial – visual pain scale for how are you feeling) (Outside the scope of this project – greater range
+        of questions to track other life factors that may be impacting things such as remembering to eat, drink, hours of sleep,
+        what did you do today – user defined answers, etc.)
+    </p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Eating Right</h2>
+        <p>
+            Many factors in our mood are indirect.  Diet is incredibly important, both in knowing what we're putting into
+            our bodies as well as how often we eat.  Depression often has the side effect of less healthy dietary habits
+            through the lack of emotional energy to encourage good eating habits.  Depression can lead to eating too much
+            or too little, and frequently the wrong thing.  We are drawn to comfort foods instead of healthy foods, we
+            gravitate to quickly prepared foods instead of things that take more effort.
+        </p>
+        <p><a class="btn btn-default" href="https://sustainabledish.com/eat-meat-beat-depression/">Protien matters &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Depression Goggles</h2>
+        <p>
+            Often when you're struggling with depression, you're the last person to recognize it.  Depression goggles is the
+            way that our brains trick themselves into believing that the dark way we look at the world when we're struggling
+            is the way that we always look at the world.  Conversely, our better days also appear to be the way we always
+            feel, from the inside.
+        </p>
+        <p><a class="btn btn-default" href="https://www.psychologytoday.com/us/blog/think-act-be/201705/can-you-be-depressed-without-knowing-it-i-was">Depressed and Oblivious &raquo;</a></p>
+        <p><a class="btn btn-default" href="https://psychcentral.com/blog/depressions-secret-plan-for-your-identity/">Depression Goggles &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Dangerous thoughts</h2>
+        <p>If you're ever in a crisis, don't forget that help is out there!</p>
+        <img src="~/images/NSPL_Logo.jpg" alt="National Suicide Prevention Lifeline Logo 1-800-273-8255" width="97%" />
+        <p><a class="btn btn-default" href="https://suicidepreventionlifeline.org/">National Suicide Prevention Lifeline &raquo;</a></p>
+    </div>
 </div>
