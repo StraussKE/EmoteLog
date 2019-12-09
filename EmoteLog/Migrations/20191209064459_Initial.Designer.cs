@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmoteLog.Migrations
 {
     [DbContext(typeof(AppIdentityDbContext))]
-    [Migration("20191209055041_Initial")]
+    [Migration("20191209064459_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

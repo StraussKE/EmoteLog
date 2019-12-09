@@ -70,7 +70,7 @@ namespace EmoteLog
             // Inject our repositories into our controllers
             services.AddTransient<ILogRepository, EFLogRepository>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -93,13 +93,7 @@ namespace EmoteLog
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();
-
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+            app.UseMvcWithDefaultRoute();
 
             AppIdentityDbContext.CreateAdminAccount(app.ApplicationServices, Configuration).Wait();
         }
