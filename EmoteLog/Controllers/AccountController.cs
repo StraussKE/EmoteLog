@@ -105,7 +105,7 @@ namespace EmoteLog.Controllers
             var user = await GetCurrentUserAsync();
             if (user != null)
             {
-                return View(user);
+                return RedirectToAction("MemberProfile", "Log", user);
             }
             return RedirectToAction("Logout");
         }

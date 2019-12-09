@@ -20,6 +20,13 @@ namespace EmoteLog.Controllers
             _logRepo = logs;
         }
 
+        public IActionResult MemberProfile(EmoteLogUser user)
+        {
+            ViewBag.currentUserLog = _logRepo.Entries.Where(e => e.UserId == user.Id).ToList();
+            ViewBag.avgMood = AverageMood(ViewBag.currentUserLog);
+            return View(user);
+        }
+
         [HttpGet]
         public IActionResult NewEntry(string userId)
         {
@@ -46,9 +53,15 @@ namespace EmoteLog.Controllers
         public int AverageMood(List<LogEntry> currentUserLog)
         {
             int ratingSum = 0;
-            foreach (LogEntry entry in currentUserLog)
+            if (currentUserLog.Count == 0)
             {
-                ratingSum += entry.Mood;
+                return 0;
+            }
+            else { 
+                foreach (LogEntry entry in currentUserLog)
+                {
+                    ratingSum += entry.Mood;
+                }
             }
             return ratingSum / currentUserLog.Count();
         }
