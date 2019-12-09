@@ -1,0 +1,39 @@
+﻿@model List<LogEntry>
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Journal";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <!-- _Layout -->
+</head>
+<body>
+    <div class="panel-body">
+
+        @foreach (LogEntry e in Model)
+        {
+            <table class="table table-sm table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Entry</th>
+                        <th>Mood Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@e.PublishDate.ToShortDateString()</td>
+                        <td>@e.Entry</td>
+                        <td>@e.Mood</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        }
+    </div>
+</body>
+</html>

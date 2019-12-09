@@ -1,0 +1,73 @@
+﻿@model LogEntry
+@{
+    ViewData["Title"] = "New Entry";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- _Layout -->
+</head>
+<body>
+    <div class="panel panel-success">
+        <div class="panel-body">
+            <form class="p-1" asp-action="NewEntry" method="post">
+                <div asp-validation-summary="All"></div>
+                <input asp-for="UserId" value="@ViewBag.userId" type="hidden" />
+                <div class="form-check-label text-center">
+                    <h2><label asp-for="Mood">Rate your current mood! 0 is a perfect day, 10 is the worst you can imagine</label></h2>
+                </div>
+                <figure>
+                    <img class="text-center" src="https://www.health.harvard.edu/media/content/images/p5_PainScale_MLDec18_gi539684888.jpg" width="100%" alt="visual pain scale representation">
+                    <figcaption><strong><small>Image: © EgudinKa/Getty Images</small></strong></figcaption>
+                </figure>
+                <table class="table table-borderless table-sm text-center">
+                    <tr>
+                        <td>
+                            <label><input asp-for="Mood" value="0" type="radio" />0</label>
+                        </td>
+                        <td>
+                            <label><input asp-for="Mood" value="1" type="radio" />1</label>
+                        </td>
+                        <td>
+                            <label><input asp-for="Mood" value="2" type="radio" />2</label>
+                        </td>
+                        <td>
+                            <label><input asp-for="Mood" value="3" type="radio" />3</label>
+                        </td>
+                        <td>
+                            <label><input asp-for="Mood" value="4" type="radio" />4</label>
+                        </td>
+                        <td>
+                            <label><input asp-for="Mood" value="5" type="radio" />5</label>
+                        </td>
+                        <td>
+                            <label><input asp-for="Mood" value="6" type="radio" />6</label>
+                        </td>
+                        <td>
+                            <label><input asp-for="Mood" value="7" type="radio" />7</label>
+                        </td>
+                        <td>
+                            <label><input asp-for="Mood" value="8" type="radio" />8</label>
+                        </td>
+                        <td>
+                            <label><input asp-for="Mood" value="9" type="radio" />9</label>
+                        </td>
+                        <td>
+                            <label><input asp-for="Mood" value="10" type="radio" />10</label>
+                        </td>
+                    </tr>
+                </table>
+                <div class="form-group">
+                    <label asp-for="Entry">Journal Entry</label>
+                    <textarea class="form-control" asp-for="Entry"></textarea>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-primary btn-submit" type="submit">
+                        Submit Entry
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html> 
