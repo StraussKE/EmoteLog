@@ -25,17 +25,12 @@
                 <tr>
                     <td>@user.UserName</td>
                    
-                    @if (user.UserName != "Admin")
-                    {
+                    
 
                         <td>
                             <input type="checkbox" name="IdsToAdd" value="@user.Id">
                         </td>
-                    }
-                    else
-                    {
-                        <td>No Changes Permitted</td>
-                    }
+                    
                 </tr>
             }
         }
@@ -51,12 +46,19 @@
         {
             @foreach (EmoteLogUser user in Model.Members)
             {
-                <tr>
-                    <td>@user.UserName</td>
+            <tr>
+                <td>@user.UserName</td>
+                @if (Model.Role.Name != "_Admin" && user.UserName != "Admin")
+                {
                     <td>
                         <input type="checkbox" name="IdsToDelete" value="@user.Id">
                     </td>
-                </tr>
+                }
+                else
+                {
+                    <td>No Changes Permitted</td>
+                }
+            </tr>
             }
         }
     </table>
