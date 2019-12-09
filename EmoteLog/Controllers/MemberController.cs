@@ -11,11 +11,11 @@ using Microsoft.AspNetCore.Authorization;
 namespace EmoteLog.Controllers
 {
     [Authorize]
-    public class LogController : Controller
+    public class MemberController : Controller
     {
         static ILogRepository _logRepo;
 
-        public LogController(ILogRepository logs)
+        public MemberController(ILogRepository logs)
         {
             _logRepo = logs;
         }

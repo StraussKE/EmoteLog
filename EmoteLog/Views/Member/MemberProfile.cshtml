@@ -1,0 +1,34 @@
+﻿@model EmoteLogUser
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<h1>Welcome, @Model.UserName</h1>
+<h4>You have been a member since @Model.CreatedAccount.ToLongDateString()</h4>
+<section>
+    @if (ViewBag.currentUserLog.Count == 0)
+    {
+        <p>You have no log entries yet</p>
+        <h4>Start your log now!</h4>
+    }
+    else
+    {
+        <ul>
+            @if (ViewBag.currentUserLog.Count == 1)
+            {
+                <li>You have 1 log entry so far</li>
+            }
+            else
+            {
+                <li>You have @ViewBag.currentUserLog.Count log entries in total</li>
+            }
+            <li>your average mood between all of your log entries is @ViewBag.avgMood</li>
+        </ul>
+
+        <h4>Read your logs!</h4>
+        <a asp-controller="Member" asp-action="Journal" asp-route-userId="@Model.Id" class="btn btn-primary">Journal</a>
+
+        <h4>Add a new entry!</h4>
+    }
+    <a asp-controller="Member" asp-action="NewEntry" asp-route-userId="@Model.Id" class="btn btn-primary">New Entry</a>
+</section>
