@@ -8,7 +8,7 @@
 
 <div asp-validation-summary="All" class="text-danger"></div>
 
-<form asp-action="Edit" method="post">
+<form asp-action="AdminEditRole" method="post">
     <input type="hidden" name="roleName" value="@Model.Role.Name" />
     <input type="hidden" name="roleId" value="@Model.Role.Id" />
 
@@ -24,9 +24,18 @@
             {
                 <tr>
                     <td>@user.UserName</td>
-                    <td>
-                        <input type="checkbox" name="IdsToAdd" value="@user.Id">
-                    </td>
+                   
+                    @if (user.UserName != "Admin")
+                    {
+
+                        <td>
+                            <input type="checkbox" name="IdsToAdd" value="@user.Id">
+                        </td>
+                    }
+                    else
+                    {
+                        <td>No Changes Permitted</td>
+                    }
                 </tr>
             }
         }
