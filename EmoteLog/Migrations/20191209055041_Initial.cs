@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EmoteLog.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -48,6 +48,21 @@ namespace EmoteLog.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserLogs",
+                columns: table => new
+                {
+                    LogId = table.Column<Guid>(nullable: false),
+                    UserId = table.Column<string>(nullable: true),
+                    PublishDate = table.Column<DateTime>(nullable: false),
+                    Mood = table.Column<int>(nullable: false),
+                    Entry = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserLogs", x => x.LogId);
                 });
 
             migrationBuilder.CreateTable(
@@ -156,27 +171,6 @@ namespace EmoteLog.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "LogEntry",
-                columns: table => new
-                {
-                    LogId = table.Column<Guid>(nullable: false),
-                    UserId = table.Column<string>(nullable: true),
-                    Mood = table.Column<int>(nullable: false),
-                    Entry = table.Column<string>(nullable: true),
-                    EmoteLogUserId = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_LogEntry", x => x.LogId);
-                    table.ForeignKey(
-                        name: "FK_LogEntry_AspNetUsers_EmoteLogUserId",
-                        column: x => x.EmoteLogUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -215,11 +209,6 @@ namespace EmoteLog.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LogEntry_EmoteLogUserId",
-                table: "LogEntry",
-                column: "EmoteLogUserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -240,7 +229,7 @@ namespace EmoteLog.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "LogEntry");
+                name: "UserLogs");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

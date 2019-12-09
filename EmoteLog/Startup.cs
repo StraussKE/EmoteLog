@@ -100,6 +100,8 @@ namespace EmoteLog
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            AppIdentityDbContext.CreateAdminAccount(app.ApplicationServices, Configuration).Wait();
         }
     }
 }

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmoteLog.Migrations
 {
     [DbContext(typeof(AppIdentityDbContext))]
-    [Migration("20191208214958_initial")]
-    partial class initial
+    [Migration("20191209055041_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -83,19 +83,17 @@ namespace EmoteLog.Migrations
                     b.Property<Guid>("LogId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("EmoteLogUserId");
-
                     b.Property<string>("Entry");
 
                     b.Property<int>("Mood");
+
+                    b.Property<DateTime>("PublishDate");
 
                     b.Property<string>("UserId");
 
                     b.HasKey("LogId");
 
-                    b.HasIndex("EmoteLogUserId");
-
-                    b.ToTable("LogEntry");
+                    b.ToTable("UserLogs");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -206,13 +204,6 @@ namespace EmoteLog.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("EmoteLog.Models.LogEntry", b =>
-                {
-                    b.HasOne("EmoteLog.Models.EmoteLogUser")
-                        .WithMany("UserLog")
-                        .HasForeignKey("EmoteLogUserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

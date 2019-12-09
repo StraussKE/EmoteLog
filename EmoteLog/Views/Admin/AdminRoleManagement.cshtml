@@ -54,12 +54,19 @@
                     <td>@output</td>
                 }
                 <td>
-                    <form asp-action="Delete" asp-route-id="@role.Id" method="post">
+                    @if (role.Name != "_Admin")
+                    {
+                        <form asp-action="Delete" asp-route-id="@role.Id" method="post">
+                            <a class="btn btn-sm btn-primary" asp-action="AdminEditRole" asp-route-id="@role.Id">Edit Membership</a>
+                            <button type="submit" class="btn btn-sm btn-danger">
+                                Delete Role
+                            </button>
+                        </form>
+                    }
+                    else
+                    {
                         <a class="btn btn-sm btn-primary" asp-action="AdminEditRole" asp-route-id="@role.Id">Edit Membership</a>
-                        <button type="submit" class="btn btn-sm btn-danger">
-                            Delete Role
-                        </button>
-                    </form>
+                    }
                 </td>
             </tr>
         }
