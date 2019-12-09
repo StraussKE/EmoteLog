@@ -44,12 +44,17 @@
                 {
                     foreach (string name in names)
                     {
-                        output += name + ", ";
+                        output += name;
+                        if(names.Last() != name)
+                        {
+                            output += ", ";
+                        }
                     }
+                    <td>@output</td>
                 }
                 <td>
                     <form asp-action="Delete" asp-route-id="@role.Id" method="post">
-                        <!--<a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@role.Id">Edit Membership</a>-->
+                        <a class="btn btn-sm btn-primary" asp-action="AdminEditRole" asp-route-id="@role.Id">Edit Membership</a>
                         <button type="submit" class="btn btn-sm btn-danger">
                             Delete Role
                         </button>
@@ -59,4 +64,4 @@
         }
     }
 </table>
-<a class="btn btn-sm btn-primary" asp-action="Create">Create New Role</a>
+<a class="btn btn-sm btn-primary" asp-action="AdminCreateRole">Create New Role</a>

@@ -36,7 +36,7 @@
                 <td>@user.UserName</td>
                 <td>@user.Email</td>
                 <td>
-                    <form asp-action="Delete" asp-route-id="@user.Id" method="post">
+                    <form asp-action="AdminDeleteUser" asp-route-id="@user.Id" method="post">
                         <a class="btn btn-sm btn-primary" asp-action="AdminEditUser" asp-route-id="@user.Id">Edit</a>
                         <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                     </form>

@@ -34,7 +34,13 @@ namespace EmoteLog
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.ConfigureApplicationCookie(opts => opts.LoginPath = "/Account/Login");
+            services.ConfigureApplicationCookie(opts => {
+                opts.LoginPath = "/Account/Login";
+                opts.LogoutPath = "/Account/Logout";
+                opts.AccessDeniedPath = "/Account/AccessDenied";
+                opts.ExpireTimeSpan = TimeSpan.FromMinutes(10);
+                opts.SlidingExpiration = true;
+            });
 
             services.AddDbContext<AppIdentityDbContext>(options =>
                 options.UseSqlServer(
@@ -43,7 +49,7 @@ namespace EmoteLog
             services.AddIdentity<EmoteLogUser, IdentityRole>(opts => {
                 // user information validation options
                 opts.User.RequireUniqueEmail = true;
-                opts.User.AllowedUserNameCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890_";
+                opts.User.AllowedUserNameCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.";
 
                 // password validation options
                 opts.Password.RequiredLength = 6;
@@ -51,6 +57,13 @@ namespace EmoteLog
                 opts.Password.RequireLowercase = false;
                 opts.Password.RequireUppercase = false;
                 opts.Password.RequireDigit = false;
+
+                // lockout options
+                opts.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                opts.Lockout.MaxFailedAccessAttempts = 5;
+                opts.Lockout.AllowedForNewUsers = true;
+
+
             }).AddEntityFrameworkStores<AppIdentityDbContext>().AddDefaultTokenProviders();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

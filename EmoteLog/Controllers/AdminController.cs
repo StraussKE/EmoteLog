@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using EmoteLog.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EmoteLog.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private RoleManager<IdentityRole> _roleManager;
@@ -41,7 +43,7 @@ namespace EmoteLog.Controllers
                 IdentityResult result = await _userManager.DeleteAsync(user);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("AdminUserManagement");
                 }
                 else
                 {
@@ -52,7 +54,7 @@ namespace EmoteLog.Controllers
             {
                 ModelState.AddModelError("", "User Not Found");
             }
-            return View("Index", _userManager.Users);
+            return View("AdminUserManagement", _userManager.Users);
         }
 
         // I don't have time to master editing users for this project
@@ -140,7 +142,7 @@ namespace EmoteLog.Controllers
             return View("AdminRoleManagement", _roleManager.Roles);
         }
 
-        public async Task<IActionResult> AdminRoleEdit(string id)
+        public async Task<IActionResult> AdminEditRole(string id)
         {
             IdentityRole role = await _roleManager.FindByIdAsync(id);
             List<EmoteLogUser> members = new List<EmoteLogUser>();
@@ -159,7 +161,7 @@ namespace EmoteLog.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AdminRoleEdit(RoleModificationModel model)
+        public async Task<IActionResult> AdminEditRole(RoleModificationModel model)
         {
             IdentityResult result;
             if (ModelState.IsValid)
@@ -195,7 +197,7 @@ namespace EmoteLog.Controllers
             }
             else
             {
-                return await AdminRoleEdit(model.RoleId);
+                return await AdminEditRole(model.RoleId);
             }
         }
 
