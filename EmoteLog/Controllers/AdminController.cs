@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace EmoteLog.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "_Admin")]
     public class AdminController : Controller
     {
         private RoleManager<IdentityRole> _roleManager;
@@ -43,7 +43,7 @@ namespace EmoteLog.Controllers
                 IdentityResult result = await _userManager.DeleteAsync(user);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("AdminUserManagement");
+                    return RedirectToAction("AdminUserManagement", _userManager.Users);
                 }
                 else
                 {

@@ -13,7 +13,7 @@ namespace EmoteLog.Models
 
         public string UserId { get; set; }
 
-        public DateTime PublishDate { get; }
+        public DateTime PublishDate { get; set; }
 
         [Required(ErrorMessage = "Tell me how you're doing!")]
         public int Mood { get; set; }

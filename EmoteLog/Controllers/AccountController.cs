@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using EmoteLog.Models;
+using System.Security.Claims;
+
 
 namespace EmoteLog.Controllers
 {
@@ -19,6 +21,9 @@ namespace EmoteLog.Controllers
             _userManager = usrMgr;
             _signManager = signMgr;
         }
+
+        private Task<EmoteLogUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
+
 
         [AllowAnonymous]
         public ViewResult Register() => View();
@@ -73,7 +78,7 @@ namespace EmoteLog.Controllers
                     await _signManager.PasswordSignInAsync(user, details.Password, false, false);
                     if (result.Succeeded)
                     {
-                        return Redirect(returnUrl ?? "/");
+                        return RedirectToAction("Profile");
                     }
                 }
                 ModelState.AddModelError(nameof(LoginModel.Email), "Invalid user or password");
@@ -92,6 +97,17 @@ namespace EmoteLog.Controllers
         public IActionResult AccessDenied()
         {
             return View();
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Profile()
+        {
+            var user = await GetCurrentUserAsync();
+            if (user != null)
+            {
+                return View(user);
+            }
+            return RedirectToAction("Logout");
         }
     }
 }

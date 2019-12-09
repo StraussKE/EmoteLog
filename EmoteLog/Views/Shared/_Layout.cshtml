@@ -39,9 +39,6 @@
                         }
                         @if (User?.Identity?.IsAuthenticated ?? false)
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Member" asp-action="Index">Home</a>
-                            </li>
                             <li>
                                 <a asp-controller="Account" asp-action="Logout" class="btn btn-primary">Logout</a>
                             </li>
@@ -49,20 +46,23 @@
                     </ul>
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         @if (User?.Identity?.IsAuthenticated ?? false)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Index">Home</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Profile">Profile</a>
                             </li>
-                            if (User.IsInRole("Admin"))
+                            if (User.IsInRole("_Admin"))
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AdminUserManager">User Management</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AdminUserManagement">User Management</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AdminRoleManager">Role Management</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AdminRoleManagement">Role Management</a>
                                 </li>
                             }
                         }

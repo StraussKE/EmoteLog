@@ -16,6 +16,8 @@ namespace EmoteLog.Models
         public AppIdentityDbContext(DbContextOptions<AppIdentityDbContext> options)
             : base(options) { }
 
+        public DbSet<LogEntry> UserLogs { get; set; }
+
         public static async Task CreateAdminAccount(IServiceProvider serviceProvider,
             IConfiguration configuration)
         {

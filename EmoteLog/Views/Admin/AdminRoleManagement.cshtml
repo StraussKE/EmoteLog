@@ -2,7 +2,6 @@
 @{
     ViewData["Title"] = "Index";
     List<string> names = new List<string>();
-    string output = "";
 }
 
 <div class="bg-primary m-1 p-1"><h4>Roles</h4></div>
@@ -26,6 +25,7 @@
     {
         foreach (var role in Model)
         {
+            names.Clear();
             <tr>
                 <td>@role.Id</td>
                 <td>@role.Name</td>
@@ -42,6 +42,7 @@
                 }
                 else
                 {
+                    string output = "";
                     foreach (string name in names)
                     {
                         output += name;

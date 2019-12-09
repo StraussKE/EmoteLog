@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using EmoteLog.Models;
+using EmoteLog.Repositories;
 
 namespace EmoteLog
 {
@@ -38,7 +39,7 @@ namespace EmoteLog
                 opts.LoginPath = "/Account/Login";
                 opts.LogoutPath = "/Account/Logout";
                 opts.AccessDeniedPath = "/Account/AccessDenied";
-                opts.ExpireTimeSpan = TimeSpan.FromMinutes(10);
+                opts.ExpireTimeSpan = TimeSpan.FromMinutes(5);
                 opts.SlidingExpiration = true;
             });
 
@@ -65,6 +66,9 @@ namespace EmoteLog
 
 
             }).AddEntityFrameworkStores<AppIdentityDbContext>().AddDefaultTokenProviders();
+
+            // Inject our repositories into our controllers
+            services.AddTransient<ILogRepository, EFLogRepository>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
