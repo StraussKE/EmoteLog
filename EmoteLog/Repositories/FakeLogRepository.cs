@@ -8,20 +8,12 @@ namespace EmoteLog.Repositories
 {
     public class FakeLogRepository : ILogRepository
     {
-        public IQueryable<LogEntry> Entries => new List<LogEntry>
-        {
-            new LogEntry
-            {
-                LogId = new Guid(),
-                Mood = 5,
-                Entry = "I'm feeling fairly flat today.  It's not a good day, it's not a bad day, it's just a day."
-            }
-            
-        }.AsQueryable<LogEntry>();
+        private List<LogEntry> entries = new List<LogEntry>();
+        public IQueryable<LogEntry> Entries => entries.AsQueryable();
 
         public void AddEntry(LogEntry entry)
         {
-            Entries.ToList().Add(entry);
+            entries.Add(entry);
         }
     }
 }
