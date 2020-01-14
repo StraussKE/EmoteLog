@@ -120,7 +120,7 @@ namespace EmoteLog.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> DeleteRole(string id)
+        public async Task<IActionResult> AdminDeleteRole(string id)
         {
             IdentityRole role = await _roleManager.FindByIdAsync(id);
             if (role != null)

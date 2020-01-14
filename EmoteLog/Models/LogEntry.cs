@@ -18,6 +18,7 @@ namespace EmoteLog.Models
         [Required(ErrorMessage = "Tell me how you're doing!")]
         public int Mood { get; set; }
 
+        [StringLength(3000)]
         public string Entry { get; set; }
     }
 }

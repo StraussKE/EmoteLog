@@ -1,0 +1,21 @@
+﻿Models:
+	LogEntry.cs - validation types:
+		[Required()]
+		[StringLength()]
+	UserViewModels.cs - validation types
+		[Required]
+		[Required, MaxLength()]
+		[EmailAddress]
+		[Required, DataType(DataType.Password)]
+		[DataType(DataType.Password), Compare(nameof())]
+
+Controller Methods:
+	MemberController.cs
+		NewEntry(LogEntry(()))
+	AdminController
+		AdminCreateRole([Required])
+		AdminDeleteRole()
+		AdminEditRole()
+	AccountController
+		Register()
+		Login()
