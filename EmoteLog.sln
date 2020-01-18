@@ -5,7 +5,12 @@ VisualStudioVersion = 15.0.28307.902
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmoteLog", "EmoteLog\EmoteLog.csproj", "{5206DAB5-F68B-4976-8EC3-D56F0ECB8865}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmoteLog.Tests", "EmoteLog.Tests\EmoteLog.Tests.csproj", "{01896948-6D4A-40AB-B0FE-7BF81CE0CC6A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmoteLog.Tests", "EmoteLog.Tests\EmoteLog.Tests.csproj", "{01896948-6D4A-40AB-B0FE-7BF81CE0CC6A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{2090ABB0-8A08-40C5-8486-A4FA250038FF}"
+	ProjectSection(SolutionItems) = preProject
+		Docs\lab1-validation.txt = Docs\lab1-validation.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
